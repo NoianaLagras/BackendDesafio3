@@ -1,12 +1,12 @@
 import express  from "express";
 import { ProductManager } from "./ProductManager.js";
+import __dirname from './utils.js';
 
 const app = express();
 const PORT = 8080 ;
+const productManager = new ProductManager(`${__dirname}/../Products.JSON`);
 
-const productManager = new ProductManager('Products.JSON');
-
-app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //     ------ Obtener Productos -------
 app.get('/products', async (req, res) => {
