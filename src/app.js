@@ -17,9 +17,9 @@ app.get('/products', async (req, res) => {
 
         if (limit) {
             const limitedProducts = products.slice(0, limit); 
-            res.json(limitedProducts);
+            res.json({limitedProducts});
         } else {
-            res.json(products);
+            res.json({products});
         }
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener los productos.' });
@@ -39,7 +39,7 @@ app.get('/products/:pid', async (req, res) => {
         const product = await productManager.getProductById(pid);
 
         if (product) {
-            res.json(product);
+            res.json({product});
         } else {
             res.status(404).json({ error: 'Producto no encontrado.' });
         }
